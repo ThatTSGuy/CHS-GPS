@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html>
-    <head>
 
-    </head>
-    <body>
-        <canvas class="canvas"></canvas>
+<head>
+    <style>
+        canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid black;
+        }
+    </style>
+</head>
 
-        <script src="dijkstra.js"></script>
+<body>
+    <canvas class="canvas"></canvas>
+
+    <div>Node List: </div>
+    <span class="node-list"></span>
+    <br>
+    <span>Start: </span>
+    <input class="node-start">
+    <br>
+    <span>End: </span>
+    <input class="node-end">
+    <br>
+    <button class="start-pathfind">Start Pathfind</button>
+    <br>
+    <div>Path Length: </div>
+    <span class="path-length"></span>
+
+    <script src="dijkstra.js">
+        </script>
         <script src="script.js"></script>
-    </body>
+</body>
+
 </html>
