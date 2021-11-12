@@ -3,8 +3,10 @@ const ctx = canvas.getContext('2d');
 
 const floorPlan = document.querySelector('.floor-plan');
 const nameInput = document.querySelector('.name-input');
+const nodeDelete = document.querySelector('.node-delete');
 
 let nodes = {};
+let nodeCounter = 0;
 
 nameInput.addEventListener('keyup', () => {
     for (const node in nodes) {
@@ -12,9 +14,21 @@ nameInput.addEventListener('keyup', () => {
     }
 })
 
+nodeDelete.addEventListener('click', () => {
+    for (const node in nodes) {
+        if (nodes[node].selected) {
+            for (const neighbour in nodes[node].neighbours) {
+                delete nodes[neighbour].neighbours[node];
+            }
+
+            delete nodes[node];
+        }
+    }
+})
+
 window.onload = function () {
-    canvas.width = floorPlan.width / 2;
-    canvas.height = floorPlan.height / 2;
+    canvas.width = window.innerWidth - 300;
+    canvas.height = window.innerHeight - 300;
 
     render();
 };
@@ -25,7 +39,7 @@ let connectingPoint;
 let connectingLine;
 
 canvas.addEventListener('mousedown', evt => {
-    dragPoint = getNodesAtPoint(evt.offsetX, evt.offsetY);
+    dragPoint = getNodeAtPoint(evt.offsetX, evt.offsetY);
 
     if (evt.buttons == 1 && !dragPoint) {
         dragStart = transformPoint(evt.offsetX, evt.offsetY);
@@ -42,7 +56,7 @@ canvas.addEventListener('mousedown', evt => {
             dragPoint = null;
         } else {
             const transformed = transformPoint(evt.offsetX, evt.offsetY);
-            const id = 'node' + Object.keys(nodes).length;
+            const id = 'node' + nodeCounter++;
 
             nodes[id] = {
                 name: id,
@@ -59,7 +73,7 @@ canvas.addEventListener('mousedown', evt => {
 canvas.addEventListener('contextmenu', evt => evt.preventDefault());
 
 canvas.addEventListener('mouseup', evt => {
-    const hoverPoint = getNodesAtPoint(evt.offsetX, evt.offsetY);
+    const hoverPoint = getNodeAtPoint(evt.offsetX, evt.offsetY);
 
     if (connectingPoint && hoverPoint) {
         const distance = distanceBetween(nodes[hoverPoint].position, nodes[connectingPoint].position);
@@ -158,7 +172,7 @@ function transformPoint(x, y) {
     }
 }
 
-function getNodesAtPoint(pointX, pointY) {
+function getNodeAtPoint(pointX, pointY) {
     for (const node in nodes) {
         const { x, y } = nodes[node].position;
         const { x: eventX, y: eventY } = transformPoint(pointX, pointY);
@@ -191,5 +205,5 @@ function exportNodes() {
         };
     }
 
-    return JSON.stringify({ nodes: exportedNodes, metadata: exportedMetadata });
+    return JSON.stringify({ nodes: exportedNodes, metadata: exportedMetadata, image: floorPlan.src, feetPerPixel: null });
 }
