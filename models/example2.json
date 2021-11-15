@@ -1,0 +1,1045 @@
+{
+    "nodes": {
+        "node0": {
+            "node29": 17
+        },
+        "node2": {
+            "node3": 30,
+            "node27": 29,
+            "node32": 21
+        },
+        "node3": {
+            "node2": 30,
+            "node4": 20,
+            "node15": 8
+        },
+        "node4": {
+            "node3": 20,
+            "node5": 15,
+            "node25": 8
+        },
+        "node5": {
+            "node4": 15,
+            "node6": 21,
+            "node16": 8
+        },
+        "node6": {
+            "node5": 21,
+            "node7": 12,
+            "node24": 8
+        },
+        "node7": {
+            "node6": 12,
+            "node8": 25,
+            "node17": 8
+        },
+        "node8": {
+            "node7": 25,
+            "node9": 9,
+            "node23": 8
+        },
+        "node9": {
+            "node8": 9,
+            "node10": 28,
+            "node18": 8
+        },
+        "node10": {
+            "node9": 28,
+            "node11": 6,
+            "node22": 8
+        },
+        "node11": {
+            "node10": 6,
+            "node13": 32,
+            "node19": 8
+        },
+        "node12": {
+            "node13": 2,
+            "node20": 8,
+            "node60": 37
+        },
+        "node13": {
+            "node11": 32,
+            "node12": 2,
+            "node21": 8
+        },
+        "node15": {
+            "node3": 8
+        },
+        "node16": {
+            "node5": 8
+        },
+        "node17": {
+            "node7": 8
+        },
+        "node18": {
+            "node9": 8
+        },
+        "node19": {
+            "node11": 8
+        },
+        "node20": {
+            "node12": 8
+        },
+        "node21": {
+            "node13": 8
+        },
+        "node22": {
+            "node10": 8
+        },
+        "node23": {
+            "node8": 8
+        },
+        "node24": {
+            "node6": 8
+        },
+        "node25": {
+            "node4": 8
+        },
+        "node26": {
+            "node27": 13
+        },
+        "node27": {
+            "node2": 29,
+            "node26": 13,
+            "node33": 14
+        },
+        "node28": {
+            "node29": 13
+        },
+        "node29": {
+            "node28": 13,
+            "node0": 17,
+            "node29": 0,
+            "node33": 27,
+            "node37": 43
+        },
+        "node31": {
+            "node32": 14
+        },
+        "node32": {
+            "node31": 14,
+            "node2": 21
+        },
+        "node33": {
+            "node34": 12,
+            "node27": 14,
+            "node29": 27
+        },
+        "node34": {
+            "node33": 12
+        },
+        "node35": {
+            "node36": 8
+        },
+        "node36": {
+            "node37": 50,
+            "node35": 8,
+            "node73": 33
+        },
+        "node37": {
+            "node36": 50,
+            "node29": 43,
+            "node38": 27
+        },
+        "node38": {
+            "node38": 0,
+            "node39": 17,
+            "node37": 27,
+            "node50": 36
+        },
+        "node39": {
+            "node38": 17
+        },
+        "node40": {
+            "node51": 8
+        },
+        "node41": {
+            "node50": 8
+        },
+        "node42": {
+            "node57": 8
+        },
+        "node43": {
+            "node57": 8
+        },
+        "node44": {
+            "node54": 8
+        },
+        "node45": {
+            "node54": 8
+        },
+        "node46": {
+            "node55": 8
+        },
+        "node47": {
+            "node55": 8
+        },
+        "node48": {
+            "node56": 7
+        },
+        "node49": {
+            "node56": 8
+        },
+        "node50": {
+            "node41": 8,
+            "node51": 15,
+            "node38": 36
+        },
+        "node51": {
+            "node50": 15,
+            "node40": 8,
+            "node57": 34
+        },
+        "node54": {
+            "node57": 38,
+            "node55": 37,
+            "node45": 8,
+            "node44": 8
+        },
+        "node55": {
+            "node54": 37,
+            "node56": 38,
+            "node47": 8,
+            "node46": 8
+        },
+        "node56": {
+            "node55": 38,
+            "node49": 8,
+            "node48": 7,
+            "node58": 40
+        },
+        "node57": {
+            "node51": 34,
+            "node43": 8,
+            "node42": 8,
+            "node54": 38
+        },
+        "node58": {
+            "node56": 40,
+            "node59": 96
+        },
+        "node59": {
+            "node60": 45,
+            "node58": 96,
+            "node67": 22
+        },
+        "node60": {
+            "node12": 37,
+            "node59": 45
+        },
+        "node61": {
+            "node67": 16
+        },
+        "node62": {
+            "node69": 11
+        },
+        "node63": {
+            "node71": 11
+        },
+        "node64": {
+            "node70": 10
+        },
+        "node65": {
+            "node71": 22
+        },
+        "node66": {
+            "node68": 9
+        },
+        "node67": {
+            "node59": 22,
+            "node68": 17,
+            "node61": 16
+        },
+        "node68": {
+            "node67": 17,
+            "node66": 9,
+            "node69": 15
+        },
+        "node69": {
+            "node68": 15,
+            "node62": 11,
+            "node70": 38
+        },
+        "node70": {
+            "node71": 10,
+            "node64": 10,
+            "node69": 38
+        },
+        "node71": {
+            "node65": 22,
+            "node63": 11,
+            "node70": 10
+        },
+        "node72": {
+            "node73": 7
+        },
+        "node73": {
+            "node72": 7,
+            "node36": 33,
+            "node80": 73
+        },
+        "node74": {
+            "node76": 7
+        },
+        "node75": {
+            "node76": 7
+        },
+        "node76": {
+            "node75": 7,
+            "node74": 7,
+            "node79": 83,
+            "node80": 24
+        },
+        "node77": {
+            "node79": 8
+        },
+        "node78": {
+            "node79": 7
+        },
+        "node79": {
+            "node77": 8,
+            "node78": 7,
+            "node76": 83
+        },
+        "node80": {
+            "node73": 73,
+            "node76": 24,
+            "node81": 109
+        },
+        "node81": {
+            "node80": 109,
+            "node82": 66,
+            "node99": 19
+        },
+        "node82": {
+            "node81": 66,
+            "node87": 35,
+            "node92": 53
+        },
+        "node84": {
+            "node93": 32
+        },
+        "node85": {
+            "node86": 32
+        },
+        "node86": {
+            "node85": 32,
+            "node93": 46,
+            "node96": 43
+        },
+        "node87": {
+            "node82": 35
+        },
+        "node88": {
+            "node90": 38,
+            "node91": 10,
+            "node92": 79
+        },
+        "node89": {
+            "node90": 10
+        },
+        "node90": {
+            "node88": 38,
+            "node89": 10
+        },
+        "node91": {
+            "node88": 10
+        },
+        "node92": {
+            "node93": 23,
+            "node82": 53,
+            "node88": 79
+        },
+        "node93": {
+            "node84": 32,
+            "node92": 23,
+            "node86": 46
+        },
+        "node94": {
+            "node96": 32
+        },
+        "node95": {
+            "node96": 59
+        },
+        "node96": {
+            "node94": 32,
+            "node95": 59,
+            "node86": 43
+        },
+        "node97": {
+            "node99": 80,
+            "node97": 0,
+            "node100": 16
+        },
+        "node99": {
+            "node81": 19,
+            "node97": 80
+        },
+        "node100": {
+            "node97": 16
+        }
+    },
+    "metadata": {
+        "node0": {
+            "name": "Main Office",
+            "position": {
+                "x": 501,
+                "y": 458
+            }
+        },
+        "node2": {
+            "name": "node2",
+            "position": {
+                "x": 483,
+                "y": 387
+            }
+        },
+        "node3": {
+            "name": "node3",
+            "position": {
+                "x": 513,
+                "y": 388
+            }
+        },
+        "node4": {
+            "name": "node4",
+            "position": {
+                "x": 533,
+                "y": 388
+            }
+        },
+        "node5": {
+            "name": "node5",
+            "position": {
+                "x": 549,
+                "y": 388
+            }
+        },
+        "node6": {
+            "name": "node6",
+            "position": {
+                "x": 570,
+                "y": 388
+            }
+        },
+        "node7": {
+            "name": "node7",
+            "position": {
+                "x": 582,
+                "y": 388
+            }
+        },
+        "node8": {
+            "name": "node8",
+            "position": {
+                "x": 606,
+                "y": 388
+            }
+        },
+        "node9": {
+            "name": "node9",
+            "position": {
+                "x": 615,
+                "y": 387
+            }
+        },
+        "node10": {
+            "name": "node10",
+            "position": {
+                "x": 643,
+                "y": 388
+            }
+        },
+        "node11": {
+            "name": "node11",
+            "position": {
+                "x": 650,
+                "y": 388
+            }
+        },
+        "node12": {
+            "name": "node12",
+            "position": {
+                "x": 684,
+                "y": 387
+            }
+        },
+        "node13": {
+            "name": "node13",
+            "position": {
+                "x": 682,
+                "y": 387
+            }
+        },
+        "node15": {
+            "name": "C101",
+            "position": {
+                "x": 513,
+                "y": 379
+            }
+        },
+        "node16": {
+            "name": "C103",
+            "position": {
+                "x": 548,
+                "y": 379
+            }
+        },
+        "node17": {
+            "name": "C105",
+            "position": {
+                "x": 582,
+                "y": 379
+            }
+        },
+        "node18": {
+            "name": "C107",
+            "position": {
+                "x": 616,
+                "y": 380
+            }
+        },
+        "node19": {
+            "name": "C109",
+            "position": {
+                "x": 650,
+                "y": 379
+            }
+        },
+        "node20": {
+            "name": "C111",
+            "position": {
+                "x": 684,
+                "y": 379
+            }
+        },
+        "node21": {
+            "name": "C108",
+            "position": {
+                "x": 681,
+                "y": 396
+            }
+        },
+        "node22": {
+            "name": "C106",
+            "position": {
+                "x": 643,
+                "y": 396
+            }
+        },
+        "node23": {
+            "name": "C104",
+            "position": {
+                "x": 606,
+                "y": 395
+            }
+        },
+        "node24": {
+            "name": "C102",
+            "position": {
+                "x": 570,
+                "y": 396
+            }
+        },
+        "node25": {
+            "name": "Bathroom",
+            "position": {
+                "x": 533,
+                "y": 396
+            }
+        },
+        "node26": {
+            "name": "Snack Hall",
+            "position": {
+                "x": 470,
+                "y": 417
+            }
+        },
+        "node27": {
+            "name": "node27",
+            "position": {
+                "x": 484,
+                "y": 417
+            }
+        },
+        "node28": {
+            "name": "Lounge",
+            "position": {
+                "x": 470,
+                "y": 458
+            }
+        },
+        "node29": {
+            "name": "node29",
+            "position": {
+                "x": 484,
+                "y": 458
+            }
+        },
+        "node31": {
+            "name": "Cafeteria",
+            "position": {
+                "x": 470,
+                "y": 366
+            }
+        },
+        "node32": {
+            "name": "node32",
+            "position": {
+                "x": 484,
+                "y": 366
+            }
+        },
+        "node33": {
+            "name": "node33",
+            "position": {
+                "x": 484,
+                "y": 431
+            }
+        },
+        "node34": {
+            "name": "Conference Rooms",
+            "position": {
+                "x": 472,
+                "y": 431
+            }
+        },
+        "node35": {
+            "name": "Counselor's Office",
+            "position": {
+                "x": 434,
+                "y": 494
+            }
+        },
+        "node36": {
+            "name": "node36",
+            "position": {
+                "x": 434,
+                "y": 502
+            }
+        },
+        "node37": {
+            "name": "node37",
+            "position": {
+                "x": 484,
+                "y": 502
+            }
+        },
+        "node38": {
+            "name": "node38",
+            "position": {
+                "x": 483,
+                "y": 529
+            }
+        },
+        "node39": {
+            "name": "Front Entrance",
+            "position": {
+                "x": 484,
+                "y": 546
+            }
+        },
+        "node40": {
+            "name": "Bathroom",
+            "position": {
+                "x": 534,
+                "y": 520
+            }
+        },
+        "node41": {
+            "name": "A101",
+            "position": {
+                "x": 520,
+                "y": 537
+            }
+        },
+        "node42": {
+            "name": "A102",
+            "position": {
+                "x": 568,
+                "y": 521
+            }
+        },
+        "node43": {
+            "name": "A103",
+            "position": {
+                "x": 568,
+                "y": 537
+            }
+        },
+        "node44": {
+            "name": "A105",
+            "position": {
+                "x": 607,
+                "y": 536
+            }
+        },
+        "node45": {
+            "name": "A104",
+            "position": {
+                "x": 607,
+                "y": 520
+            }
+        },
+        "node46": {
+            "name": "A106",
+            "position": {
+                "x": 643,
+                "y": 521
+            }
+        },
+        "node47": {
+            "name": "A107",
+            "position": {
+                "x": 643,
+                "y": 536
+            }
+        },
+        "node48": {
+            "name": "A109",
+            "position": {
+                "x": 681,
+                "y": 536
+            }
+        },
+        "node49": {
+            "name": "A108",
+            "position": {
+                "x": 681,
+                "y": 521
+            }
+        },
+        "node50": {
+            "name": "node50",
+            "position": {
+                "x": 519,
+                "y": 529
+            }
+        },
+        "node51": {
+            "name": "node51",
+            "position": {
+                "x": 534,
+                "y": 529
+            }
+        },
+        "node54": {
+            "name": "node54",
+            "position": {
+                "x": 607,
+                "y": 528
+            }
+        },
+        "node55": {
+            "name": "node55",
+            "position": {
+                "x": 643,
+                "y": 528
+            }
+        },
+        "node56": {
+            "name": "node56",
+            "position": {
+                "x": 681,
+                "y": 529
+            }
+        },
+        "node57": {
+            "name": "node57",
+            "position": {
+                "x": 568,
+                "y": 529
+            }
+        },
+        "node58": {
+            "name": "node58",
+            "position": {
+                "x": 721,
+                "y": 529
+            }
+        },
+        "node59": {
+            "name": "node59",
+            "position": {
+                "x": 721,
+                "y": 433
+            }
+        },
+        "node60": {
+            "name": "node60",
+            "position": {
+                "x": 721,
+                "y": 387
+            }
+        },
+        "node61": {
+            "name": "Bathroom",
+            "position": {
+                "x": 744,
+                "y": 416
+            }
+        },
+        "node62": {
+            "name": "E101",
+            "position": {
+                "x": 776,
+                "y": 415
+            }
+        },
+        "node63": {
+            "name": "E103",
+            "position": {
+                "x": 824,
+                "y": 415
+            }
+        },
+        "node64": {
+            "name": "E102",
+            "position": {
+                "x": 813,
+                "y": 436
+            }
+        },
+        "node65": {
+            "name": "E104",
+            "position": {
+                "x": 843,
+                "y": 437
+            }
+        },
+        "node66": {
+            "name": "Library",
+            "position": {
+                "x": 761,
+                "y": 441
+            }
+        },
+        "node67": {
+            "name": "node67",
+            "position": {
+                "x": 743,
+                "y": 432
+            }
+        },
+        "node68": {
+            "name": "node68",
+            "position": {
+                "x": 761,
+                "y": 432
+            }
+        },
+        "node69": {
+            "name": "node69",
+            "position": {
+                "x": 775,
+                "y": 427
+            }
+        },
+        "node70": {
+            "name": "node70",
+            "position": {
+                "x": 814,
+                "y": 426
+            }
+        },
+        "node71": {
+            "name": "node71",
+            "position": {
+                "x": 824,
+                "y": 426
+            }
+        },
+        "node72": {
+            "name": "Gym",
+            "position": {
+                "x": 401,
+                "y": 509
+            }
+        },
+        "node73": {
+            "name": "node73",
+            "position": {
+                "x": 401,
+                "y": 502
+            }
+        },
+        "node74": {
+            "name": "G1",
+            "position": {
+                "x": 335,
+                "y": 478
+            }
+        },
+        "node75": {
+            "name": "Fourm",
+            "position": {
+                "x": 321,
+                "y": 478
+            }
+        },
+        "node76": {
+            "name": "node76",
+            "position": {
+                "x": 328,
+                "y": 478
+            }
+        },
+        "node77": {
+            "name": "Little Gym",
+            "position": {
+                "x": 320,
+                "y": 395
+            }
+        },
+        "node78": {
+            "name": "Patio Area",
+            "position": {
+                "x": 336,
+                "y": 395
+            }
+        },
+        "node79": {
+            "name": "node79",
+            "position": {
+                "x": 328,
+                "y": 395
+            }
+        },
+        "node80": {
+            "name": "node80",
+            "position": {
+                "x": 328,
+                "y": 502
+            }
+        },
+        "node81": {
+            "name": "node81",
+            "position": {
+                "x": 219,
+                "y": 503
+            }
+        },
+        "node82": {
+            "name": "node82",
+            "position": {
+                "x": 244,
+                "y": 442
+            }
+        },
+        "node84": {
+            "name": "B2",
+            "position": {
+                "x": 214,
+                "y": 366
+            }
+        },
+        "node85": {
+            "name": "B3",
+            "position": {
+                "x": 214,
+                "y": 320
+            }
+        },
+        "node86": {
+            "name": "node86",
+            "position": {
+                "x": 246,
+                "y": 320
+            }
+        },
+        "node87": {
+            "name": "B1",
+            "position": {
+                "x": 209,
+                "y": 441
+            }
+        },
+        "node88": {
+            "name": "node88",
+            "position": {
+                "x": 167,
+                "y": 389
+            }
+        },
+        "node89": {
+            "name": "B9",
+            "position": {
+                "x": 157,
+                "y": 351
+            }
+        },
+        "node90": {
+            "name": "node90",
+            "position": {
+                "x": 167,
+                "y": 351
+            }
+        },
+        "node91": {
+            "name": "B8",
+            "position": {
+                "x": 157,
+                "y": 388
+            }
+        },
+        "node92": {
+            "name": "node92",
+            "position": {
+                "x": 246,
+                "y": 389
+            }
+        },
+        "node93": {
+            "name": "node93",
+            "position": {
+                "x": 246,
+                "y": 366
+            }
+        },
+        "node94": {
+            "name": "B4",
+            "position": {
+                "x": 214,
+                "y": 277
+            }
+        },
+        "node95": {
+            "name": "B5",
+            "position": {
+                "x": 217,
+                "y": 226
+            }
+        },
+        "node96": {
+            "name": "node96",
+            "position": {
+                "x": 247,
+                "y": 277
+            }
+        },
+        "node97": {
+            "name": "node97",
+            "position": {
+                "x": 125,
+                "y": 477
+            }
+        },
+        "node99": {
+            "name": "node99",
+            "position": {
+                "x": 200,
+                "y": 504
+            }
+        },
+        "node100": {
+            "name": "Weight Room",
+            "position": {
+                "x": 108,
+                "y": 477
+            }
+        }
+    },
+    "image": "../models/example2.png",
+    "feetPerPixel": 0.30769
+}
