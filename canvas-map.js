@@ -4,14 +4,49 @@ class CanvasMap {
         this.ctx = canvas.getContext('2d');
 
         this.dragStart, this.nodes, this.metadata, this.modelImage, this.feetPerPixel, this.currentPath;
+        this.zooming;
     }
 
     hookEvents() {
-        this.canvas.addEventListener('mousemove', this.mouseMove.bind(this));
-        this.canvas.addEventListener('mousedown', this.mouseDown.bind(this));
-        this.canvas.addEventListener('mouseup', this.mouseUp.bind(this));
-        this.canvas.addEventListener('contextmenu', this.contextMenu.bind(this));
-        this.canvas.addEventListener('wheel', this.wheel.bind(this), { passive: true });
+        // this.canvas.addEventListener('mousemove', this.mouseMove.bind(this));
+        // this.canvas.addEventListener('mousedown', this.mouseDown.bind(this));
+        // this.canvas.addEventListener('mouseup', this.mouseUp.bind(this));
+        // this.canvas.addEventListener('contextmenu', this.contextMenu.bind(this));
+        // this.canvas.addEventListener('wheel', this.wheel.bind(this), { passive: true });
+
+        this.canvas.addEventListener('touchstart', evt => {
+            const touches = evt.touches;
+
+            if (touches.length == 2) this.zooming = Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+
+            this.dragStart = this.getAverageOfTouches(touches);
+        });
+
+        this.canvas.addEventListener('touchmove', evt => {
+            const touches = evt.touches;
+
+            if (this.zooming) {
+                const distance = Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+
+                const delta = ((distance - this.zooming) / 500) + 1;
+
+                this.ctx.scale(delta, delta);
+                this.zooming = distance;
+            }
+
+            const average = this.getAverageOfTouches(touches);
+            this.ctx.translate(average.x - this.dragStart.x, average.y - this.dragStart.y);
+
+            this.render();
+
+            evt.preventDefault();
+        });
+
+        this.canvas.addEventListener('touchend', evt => {
+            this.zooming = false;
+
+            this.dragStart = this.getAverageOfTouches(evt.touches);
+        });
     }
 
     loadModel(model) {
@@ -136,13 +171,22 @@ class CanvasMap {
         }
     }
 
+    getAverageOfTouches(touches) {
+        let total = { x: 0, y: 0 };
+        for (const touch of touches) {
+            total.x += touch.clientX;
+            total.y += touch.clientY;
+        }
+        return this.transformPoint(total.x / touches.length, total.y / touches.length);
+    }
+
     getNodeFromName(name) {
         return Object.keys(this.metadata).find(node => this.metadata[node].name == name);
     }
 
     pixelsToLength(pixels) {
         const feetAndInches = pixels * this.feetPerPixel;
-    
+
         return {
             feet: Math.trunc(feetAndInches),
             inches: Math.round((feetAndInches - Math.trunc(feetAndInches)) * 12),
@@ -152,7 +196,9 @@ class CanvasMap {
     // Pathfinding functions
 
     pathfind(start, end) {
-        this.currentPath = dijkstra.findPath(this.nodes, this.getNodeFromName(start), this.getNodeFromName(end));
+        const path = dijkstra.findPath(this.nodes, this.getNodeFromName(start), this.getNodeFromName(end));
+        this.currentPath = path;
+        
         this.render();
 
         let pixels = 0;
@@ -163,6 +209,7 @@ class CanvasMap {
         })
 
         const length = this.pixelsToLength(pixels);
-        pathLength.innerText = `${length.feet}'${length.inches}"'`;
+
+        return { length, path };
     }
 }
