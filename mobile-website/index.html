@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <canvas class="canvas"></canvas>
+
+    <div class="search-bar">
+        <input type="text" class="search-bar-input" placeholder="Search here">
+        <i class="search-bar-mic bi bi-mic-fill"></i>
+    </div>
+
+    <div class="search-results">
+
+    </div>
+
+    <div class="floor-selection">
+        <div class="first-floor selected">1F</div>
+        <div class="floor-seperator"></div>
+        <div class="second-floor">2F</div>
+    </div>
+
+    <!-- <div class="bottom-bar"></div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zingtouch/1.0.6/zingtouch.min.js"></script>
+    <script src="../dijkstra.js"></script>
+    <script src="../canvas-map.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
