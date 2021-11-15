@@ -9,19 +9,34 @@
 <body>
     <canvas class="canvas"></canvas>
 
-    <div class="search-bar">
-        <input type="text" class="search-bar-input" placeholder="Search here">
-        <i class="search-bar-mic bi bi-mic-fill"></i>
+    <div class="location-selector">
+        <div class="location">
+            <i class="bi bi-geo location-icon origin-icon"></i>
+            <div class="location-input origin">Origin</div>
+        </div>
+        <div class="location">
+            <i class="bi bi-geo-alt location-icon destination-icon"></i>
+            <div class="location-input destination">Destination</div>
+        </div>
     </div>
 
-    <div class="search-results">
-
-    </div>
-
-    <div class="floor-selection">
+    <div class="floor-selector">
         <div class="first-floor selected">1F</div>
-        <div class="floor-seperator"></div>
         <div class="second-floor">2F</div>
+    </div>
+
+    <div class="location-search hidden">
+        <div class="location-search-bar-container">
+            <div class="location-search-bar">
+                <i class="bi bi-arrow-left location-search-back"></i>
+                <input class="location-search-input">
+            </div>
+        </div>
+        <div class="location-search-body">
+            <div class="location-search-results"></div>
+            <div class="location-search-recents-label">Recent</div>
+            <div class="location-search-recents"></div>
+        </div>
     </div>
 
     <!-- <div class="bottom-bar"></div> -->

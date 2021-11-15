@@ -1,109 +1,152 @@
+@import url("https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css");
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css");
 
 body {
-    margin: 0;
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.search-bar {
-    position: absolute;
-    left: 50%;
-    top: 15px;
-    transform: translateX(-50%);
-    width: calc(100% - 30px);
-    height: 50px;
-    overflow: hidden;
+.hidden { display: none; }
 
+input:focus { outline: none; }
+
+/* Location Search */
+
+.location-search {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    inset: 0;
+    padding: 20px;
 
-    background-color: white;
-    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
-    border-radius: 7px;
+    background-color: #fff;
+    transition: transform 0.3s;
 }
 
-.search-bar-input {
-    flex-grow: 1;
-    padding: 15px;
+.location-search.hidden {
+    transform: translateY(100%);
+}
 
-    color: rgba(0, 0, 0, 0.8);
+.location-search-body {
+    overflow-y: auto;
+}
+
+.location-search-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.location-search-back {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.location-search-input {
+    flex-grow: 1;
+    padding: 10px;
+    
     font-size: 16px;
+    color: rgba(0, 0, 0, 0.8);
     border: none;
 }
 
-.search-bar-input::placeholder { color: rgba(0, 0, 0, 0.5); }
+.location-search-results * {
+    padding: 15px 0;
 
-.search-bar-input:focus {
-    outline: none;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.search-bar-mic {
+.location-search-recents-label {
+    color: #222;
+    font-weight: 500;
+    padding: 15px 0 5px 0;
+}
+
+.location-search-recents * {
+    padding: 15px 0;
+
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Location Selection */
+
+.location-selector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 5px;
+    gap: 10px;
+
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.location {
+    display: flex;
+}
+
+.location-input {
+    flex-grow: 1;
     padding: 10px;
 
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.location-icon {
+    padding: 8px;
+
     font-size: 20px;
 }
 
-.search-results {
-    position: absolute;
-    left: 50%;
-    top: 70px;
-    transform: translateX(-50%);
-    width: calc(100% - 30px);
-    max-height: calc(100% - 75px);
-    overflow-y: auto;
-
-    display: flex;
-    flex-direction: column;
-
-    background-color: white;
-    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.1);
-    border-radius: 7px;
+.origin-icon {
+    color: blue;
 }
 
-.search-result {
-    padding: 10px 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+.destination-icon {
+    color: red;
 }
 
-.floor-selection {
+/* Floor Selection */
+
+.floor-selector {
     position: absolute;
-    right: 15px;
     bottom: 15px;
-    width: 50px;
-    height: 101px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+    right: 15px;
+
     background-color: white;
-    text-align: center;
     border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    overflow: hidden;
 }
 
-.floor-selection * {
+.floor-selector * {
     width: 50px;
     height: 50px;
 
     line-height: 50px;
+    text-align: center;
 }
 
-.floor-selection *.selected {
-    color: #4285F4;
+.floor-selector *.selected {
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
-.floor-seperator {
-    width: 44px;
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.bottom-bar {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 60px;
-    background-color: white;
+.first-floor {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
