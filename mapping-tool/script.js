@@ -39,7 +39,7 @@ let connectingPoint;
 let connectingLine;
 
 canvas.addEventListener('mousedown', evt => {
-    dragPoint = getNodeAtPoint(evt.offsetX, evt.offsetY);
+    dragPoint = getNodeAtPoint(evt.offsetX, evt.offsetY, 5);
 
     if (evt.buttons == 1 && !dragPoint) {
         dragStart = transformPoint(evt.offsetX, evt.offsetY);
@@ -51,7 +51,7 @@ canvas.addEventListener('mousedown', evt => {
             } else nodes[node].selected = false;
         }
     } else if (evt.buttons == 2) {
-        if (dragPoint) {
+        if (getNodeAtPoint(evt.offsetX, evt.offsetY, 5)) {
             connectingPoint = dragPoint;
             dragPoint = null;
         } else {
@@ -120,7 +120,7 @@ canvas.addEventListener('wheel', evt => {
     let delta = 1 + evt.wheelDelta / 1000;
 
     const matrixZoom = ctx.getTransform().a * delta;
-    if (matrixZoom < 0.5 || matrixZoom > 3) delta = 1;
+    if (matrixZoom < 0.2 || matrixZoom > 5) delta = 1;
 
     const transformed = transformPoint(evt.offsetX, evt.offsetY);
 
@@ -150,7 +150,7 @@ function render() {
         }
 
         ctx.beginPath();
-        ctx.arc(x, y, 5, 0, 2 * Math.PI);
+        ctx.arc(x, y, 5 / ctx.getTransform().a, 0, 2 * Math.PI);
         ctx.fillStyle = selected ? 'blue' : 'red';
         ctx.fill();
     }
@@ -172,13 +172,20 @@ function transformPoint(x, y) {
     }
 }
 
-function getNodeAtPoint(pointX, pointY) {
+function getNodeAtPoint(pointX, pointY, radius = Infinity) {
+    let shortestDistance = radius;
+    let closestNode = null;
     for (const node in nodes) {
         const { x, y } = nodes[node].position;
         const { x: eventX, y: eventY } = transformPoint(pointX, pointY);
 
-        if (distanceBetween({ x, y }, { x: eventX, y: eventY }) < 25) return node;
+        const distance = distanceBetween({ x, y }, { x: eventX, y: eventY });
+        if (distance < shortestDistance) {
+            shortestDistance = distance;
+            closestNode = node;
+        }
     }
+    return closestNode;
 }
 
 function distanceBetween(point1, point2) {
