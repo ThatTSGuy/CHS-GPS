@@ -57,7 +57,7 @@ const locationSearch = new Vue({
         clickedLocation: function (result) {
             locationSelector.setLocation(this.activeLocationType, result);
 
-            const recents = JSON.parse(localStorage.getItem('recents')).slice(0, 5) || [];
+            const recents = JSON.parse(localStorage.getItem('recents') || '[]').slice(0, 5);
             recents.unshift(result);
             localStorage.setItem('recents', JSON.stringify(recents));
 
