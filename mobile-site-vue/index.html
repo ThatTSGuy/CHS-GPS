@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=0">
+
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <canvas class="canvas"></canvas>
+
+    <div class="location-selector-container">
+        <div class="location-selector origin">
+            <i class="bi bi-geo location-icon origin-icon"></i>
+            <div class="location-input" v-on:click="showSearch('origin')">{{ origin }}</div>
+        </div>
+        <div class="location-selector destination">
+            <i class="bi bi-geo-alt location-icon destination-icon"></i>
+            <div class="location-input" v-on:click="showSearch('destination')">{{ destination }}</div>
+        </div>
+    </div>
+
+    <div class="location-search-container" v-if="visible">
+        <div class="location-search-bar-container">
+            <div class="location-search-bar">
+                <i class="bi bi-arrow-left location-search-back" v-on:click="hide"></i>
+                <input class="location-search-input" v-model.trim="searchValue" v-on:input="search" v-bind:placeholder="placeholder">
+            </div>
+        </div>
+        <div class="location-search-body">
+            <div class="location-search-results">
+                <div v-for="result in results" v-on:click="clickedLocation(result)">{{ result }}</div>
+            </div>
+            <div class="location-search-recents-label" v-if="recents().length > 0">Recent</div>
+            <div class="location-search-recents">
+                <div v-for="recent in recents()" v-on:click="clickedLocation(recent)">{{ recent }}</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../dijkstra.js"></script>
+    <script src="../canvas-map.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
