@@ -27,6 +27,10 @@ input:focus { outline: none; }
     transition: transform 0.3s;
 }
 
+.location-search-container.hidden {
+    transform: translateY(100%);
+}
+
 .location-search-body {
     overflow-y: auto;
 }
@@ -145,4 +149,8 @@ input:focus { outline: none; }
 
 .first-floor {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.destination-indicator {
+    position: absolute;
 }

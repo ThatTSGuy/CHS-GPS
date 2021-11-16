@@ -8,45 +8,9 @@ class CanvasMap {
     }
 
     hookEvents() {
-        // this.canvas.addEventListener('mousemove', this.mouseMove.bind(this));
-        // this.canvas.addEventListener('mousedown', this.mouseDown.bind(this));
-        // this.canvas.addEventListener('mouseup', this.mouseUp.bind(this));
-        // this.canvas.addEventListener('contextmenu', this.contextMenu.bind(this));
-        // this.canvas.addEventListener('wheel', this.wheel.bind(this), { passive: true });
-
-        this.canvas.addEventListener('touchstart', evt => {
-            const touches = evt.touches;
-
-            if (touches.length == 2) this.zooming = Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
-
-            this.dragStart = this.getAverageOfTouches(touches);
-        });
-
-        this.canvas.addEventListener('touchmove', evt => {
-            const touches = evt.touches;
-
-            if (this.zooming) {
-                const distance = Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
-
-                const delta = ((distance - this.zooming) / 500) + 1;
-
-                this.ctx.scale(delta, delta);
-                this.zooming = distance;
-            }
-
-            const average = this.getAverageOfTouches(touches);
-            this.ctx.translate(average.x - this.dragStart.x, average.y - this.dragStart.y);
-
-            this.render();
-
-            evt.preventDefault();
-        });
-
-        this.canvas.addEventListener('touchend', evt => {
-            this.zooming = false;
-
-            this.dragStart = this.getAverageOfTouches(evt.touches);
-        });
+        this.canvas.addEventListener('touchstart', this.touchStart.bind(this));
+        this.canvas.addEventListener('touchmove', this.touchMove.bind(this));
+        this.canvas.addEventListener('touchend', this.touchEnd.bind(this));
     }
 
     loadModel(model) {
@@ -62,45 +26,38 @@ class CanvasMap {
         })
     }
 
-    mouseMove(evt) {
-        if (this.dragStart) {
-            const transformed = this.transformPoint(evt.offsetX, evt.offsetY);
+    touchStart(evt) {
+        const touches = evt.touches;
 
-            this.ctx.translate(transformed.x - this.dragStart.x, transformed.y - this.dragStart.y);
+        if (touches.length == 2) this.zooming = Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+
+        this.dragStart = this.getAverageOfTouches(touches);
+    }
+
+    touchMove(evt) {
+        const touches = evt.touches;
+
+        if (this.zooming) {
+            const distance = Math.hypot(touches[0].clientX - touches[1].clientX, touches[0].clientY - touches[1].clientY);
+
+            const delta = ((distance - this.zooming) / 500) + 1;
+
+            this.ctx.scale(delta, delta);
+            this.zooming = distance;
         }
 
-        this.render();
-    }
-
-    mouseDown(evt) {
-        if (evt.buttons == 1) {
-            this.dragStart = this.transformPoint(evt.offsetX, evt.offsetY);
-        }
+        const average = this.getAverageOfTouches(touches);
+        this.ctx.translate(average.x - this.dragStart.x, average.y - this.dragStart.y);
 
         this.render();
+
+        evt.preventDefault();
     }
 
-    mouseUp(evt) {
-        this.dragStart = null
-    }
+    touchEnd(evt) {
+        this.zooming = false;
 
-    contextMenu(evt) {
-        evt.preventDefault()
-    }
-
-    wheel(evt) {
-        let delta = 1 + evt.wheelDelta / 1000;
-
-        const matrixZoom = this.ctx.getTransform().a * delta;
-        if (matrixZoom < 0.5 || matrixZoom > 3) delta = 1;
-
-        const transformed = this.transformPoint(evt.offsetX, evt.offsetY);
-
-        this.ctx.translate(transformed.x, transformed.y);
-        this.ctx.scale(delta, delta);
-        this.ctx.translate(-transformed.x, -transformed.y);
-
-        this.render();
+        this.dragStart = this.getAverageOfTouches(evt.touches);
     }
 
     render() {
@@ -198,7 +155,7 @@ class CanvasMap {
     pathfind(start, end) {
         const path = dijkstra.findPath(this.nodes, this.getNodeFromName(start), this.getNodeFromName(end));
         this.currentPath = path;
-        
+
         this.render();
 
         let pixels = 0;

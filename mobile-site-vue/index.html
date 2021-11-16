@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="location-search-container" v-if="visible">
+    <div v-bind:class="{ hidden: isHidden }" class="location-search-container">
         <div class="location-search-bar-container">
             <div class="location-search-bar">
                 <i class="bi bi-arrow-left location-search-back" v-on:click="hide"></i>
@@ -39,9 +39,10 @@
             </div>
         </div>
     </div>
+
+    <i class="bi bi-geo-alt destination-indicator" v-bind:style="{ top: x + 'px', left: y + 'px' }"></i>
     
-    <script src="../dijkstra.js"></script>
-    <script src="../canvas-map.js"></script>
+    <script src="map.js"></script>
     <script src="index.js"></script>
 </body>
 

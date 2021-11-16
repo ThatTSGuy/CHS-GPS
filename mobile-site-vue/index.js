@@ -1,9 +1,7 @@
 const canvas = document.querySelector('.canvas');
 
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight;
-
-const map = new CanvasMap(canvas);
+const render = new MapRender(canvas, window.innerWidth, window.innerHeight);
+const map = new Map(render);
 
 const nodeList = [];
 fetch('../models/example2.json').then(response => response.json())
@@ -29,9 +27,11 @@ const locationSelector = new Vue({
         setLocation: function (type, location) {
             this[type] = location;
 
-            if (this.origin !== 'Origin' && this.destination !== 'Destination') {
-                map.pathfind(this.origin, this.destination);
-            }
+            map.origin = this.origin == 'Origin' ? null : this.origin;
+            map.destination = this.destination == 'Destination' ? null : this.destination;
+
+            const path = map.recalculate();
+            if (path) console.log('Found path: ', path);
         },
     },
 })
@@ -39,7 +39,7 @@ const locationSelector = new Vue({
 const locationSearch = new Vue({
     el: '.location-search-container',
     data: {
-        visible: false,
+        isHidden: true,
         activeLocationType: '',
         placeholder: '',
         searchValue: '',
@@ -64,17 +64,25 @@ const locationSearch = new Vue({
             this.hide();
         },
         show: function (type) {
-            this.visible = true;
+            this.isHidden = false;
             this.activeLocationType = type;
             this.placeholder = 'Search for ' + type;
             this.searchValue = '';
             this.results = [];
         },
         hide: function () {
-            this.visible = false;
+            this.isHidden = true;
         },
         recents: function () {
             return JSON.parse(localStorage.getItem('recents')) || [];
         },
+    },
+})
+
+const destinationIndicator = new Vue({
+    el: '.destination-indicator',
+    data: {
+        x: 0,
+        y: 0,
     },
 })
