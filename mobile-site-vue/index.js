@@ -14,75 +14,35 @@ fetch('../models/example2.json').then(response => response.json())
         nodeList.sort();
     });
 
-const locationSelector = new Vue({
-    el: '.location-selector-container',
+const search = new Vue({
+    el: '.search',
     data: {
-        origin: 'Origin',
-        destination: 'Destination',
+        isMenuOpen: false,
+        inputValue: '',
+        results: [
+            { text: 'A101', recent: false },
+            { text: 'A102', recent: false },
+            { text: 'A105', recent: false },
+            { text: 'A101', recent: false },
+            { text: 'A102', recent: false },
+            { text: 'A105', recent: false },
+            { text: 'A101', recent: false },
+            { text: 'A102', recent: false },
+            { text: 'A105', recent: false },
+            { text: 'A101', recent: false },
+            { text: 'A102', recent: false },
+            { text: 'A105', recent: false },
+            { text: 'Bathroom', recent: true },
+            { text: 'Main Office', recent: true },
+        ],
+        recents: [],
     },
     methods: {
-        showSearch: function (type) {
-            locationSearch.show(type);
+        openMenu: function () {
+            this.isMenuOpen = true;
         },
-        setLocation: function (type, location) {
-            this[type] = location;
-
-            map.origin = this.origin == 'Origin' ? null : this.origin;
-            map.destination = this.destination == 'Destination' ? null : this.destination;
-
-            const path = map.recalculate();
-            if (path) console.log('Found path: ', path);
+        closeMenu: function () {
+            this.isMenuOpen = false;
         },
-    },
-})
-
-const locationSearch = new Vue({
-    el: '.location-search-container',
-    data: {
-        isHidden: true,
-        activeLocationType: '',
-        placeholder: '',
-        searchValue: '',
-        results: [],
-    },
-    methods: {
-        search: function () {
-            const value = this.searchValue.toLowerCase();
-            if (value == '') {
-                this.results = [];
-            } else {
-                this.results = nodeList.filter(node => node.toLowerCase().startsWith(value));
-            }
-        },
-        clickedLocation: function (result) {
-            locationSelector.setLocation(this.activeLocationType, result);
-
-            const recents = JSON.parse(localStorage.getItem('recents') || '[]').slice(0, 5);
-            recents.unshift(result);
-            localStorage.setItem('recents', JSON.stringify(recents));
-
-            this.hide();
-        },
-        show: function (type) {
-            this.isHidden = false;
-            this.activeLocationType = type;
-            this.placeholder = 'Search for ' + type;
-            this.searchValue = '';
-            this.results = [];
-        },
-        hide: function () {
-            this.isHidden = true;
-        },
-        recents: function () {
-            return JSON.parse(localStorage.getItem('recents')) || [];
-        },
-    },
-})
-
-const destinationIndicator = new Vue({
-    el: '.destination-indicator',
-    data: {
-        x: 0,
-        y: 0,
     },
 })
