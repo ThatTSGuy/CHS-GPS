@@ -53,6 +53,12 @@ class MapRender {
     this.ctx.clearRect(topLeft.x, topLeft.y, bottomRight.x - topLeft.x, bottomRight.y - topLeft.y);
 
     if (this.modelImage) this.ctx.drawImage(this.modelImage, 0, 0);
+
+    if (this.currentPath) {
+      this.currentPath.forEach(node => {
+        this.ctx.fillRect(node.x, node.y, 10, 10);
+      })
+    }
   }
 
   translationToPoint(x, y) {
@@ -89,6 +95,7 @@ class MapRender {
 class Map {
   constructor(render) {
     this.render = render;
+    this.currentPosition = 'Front Entrance';
   }
 
   loadModel(model) {
@@ -99,28 +106,28 @@ class Map {
     this.render.modelImage = new Image(model.image);
     this.render.modelImage.src = '../models/example2.png';
 
-    this.render.bake();
+    this.render.modelImage.addEventListener('load', () => this.render.bake());
   }
 
   focusOnNode(node) {
-    const { x, y } = this.render.translationToPoint(0, 0);
+    const { x, y } = this.getNodeMetadata(node).position;
+    this.render.ctx.scale(1.5, 1.5);
+    this.render.centerAt(x, y);
+  }
 
-    let t = 0;
-    while (t < 100) {
-      t++;
-      setTimeout(() => {
-        this.render.ctx.translate(x / 100, y / 100);
-        this.render.bake();
-      }, 10 * t);
+  getNodeMetadata(nodeName) {
+    if (nodeName.startsWith('node')) {
+      return this.metadata[nodeName];
+    } else {
+      const node = Object.keys(this.nodes).find(key => this.metadata[key].name === nodeName);
+      return { node, ...this.metadata[node] };
     }
   }
 
-  getNodeMetadata(node) {
-    if (node.startsWith('node')) {
-      return this.metadata[node];
-    } else {
-      return Object.values(this.metadata).find(metadata => metadata.name == node);
-    }
+  calculateRoute(end) {
+    const path = dijkstra.findPath(this.nodes, this.getNodeMetadata(this.currentPosition).node, this.getNodeMetadata(end).node);
+    this.render.currentPath = path.map(node => this.getNodeMetadata(node).position);
+    this.render.bake();
   }
 }
 

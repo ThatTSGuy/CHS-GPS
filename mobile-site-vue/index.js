@@ -14,6 +14,8 @@ fetch('../models/example2.json').then(response => response.json())
         nodeList.sort();
     });
 
+const storage = window.localStorage;
+
 const search = new Vue({
     el: '.search',
     data: {
@@ -22,22 +24,51 @@ const search = new Vue({
         searchResults: [],
     },
     methods: {
-        search: function() {
+        search: function () {
             const value = document.querySelector('.search-bar-input').value.trim().toLowerCase();
-            const results = nodeList.filter(node => node.toLowerCase().startsWith(value));
-            this.searchResults = results.map(result => ({ text: result, recent: false }));
+            const results = value == '' ? [] : nodeList.filter(node => node.toLowerCase().startsWith(value));
+
+            this.searchResults = [
+                ...results.map(result => ({ text: result, recent: false })),
+                ...JSON.parse(storage.getItem('recents') || '[]').map(recent => ({ text: recent, recent: true })),
+            ];
         },
-        clickedResult: function(node) {
-            document.querySelector('.search-bar-input').value = node.text;
+        clickedResult: function (node) {
+            document.querySelector('.search-bar-input').value = node;
+            map.focusOnNode(node);
+
+            const recents = JSON.parse(storage.getItem('recents') || '[]').slice(0, 2);
+            recents.unshift(node);
+            storage.setItem('recents', JSON.stringify(recents));
+
+            preview.show(node);
+
             this.closeMenu();
         },
         openMenu: function () {
             this.isMenuOpen = true;
-            document.querySelector('.search-bar-input').value = '';
+            this.search();
         },
         closeMenu: function () {
             this.isMenuOpen = false;
             this.searchResults = [];
+            document.querySelector('.search-bar-input').value = '';
+        },
+    },
+})
+
+const preview = new Vue({
+    el: '.preview',
+    data: {
+        isHidden: true,
+        node: '',
+        imageSrc: 'https://picsum.photos/200?random=1',
+    },
+    methods: {
+        show: function (node) {
+            map.calculateRoute(node);
+            this.node = node;
+            this.isHidden = false;
         },
     },
 })
