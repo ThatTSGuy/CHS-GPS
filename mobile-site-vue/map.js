@@ -55,6 +55,18 @@ class MapRender {
     if (this.modelImage) this.ctx.drawImage(this.modelImage, 0, 0);
   }
 
+  translationToPoint(x, y) {
+    const { a, e, f } = this.ctx.getTransform();
+    return { x: (-e + this.canvas.width / 2) / a - x, y: (-f + this.canvas.height / 2) / a - y };
+  }
+
+  centerAt(x, y) {
+    const { a, e, f } = this.ctx.getTransform();
+    this.ctx.translate((-e + this.canvas.width / 2) / a - x, (-f + this.canvas.height / 2) / a - y);
+
+    this.bake();
+  }
+
   getAverageTouchLocations(touches) {
     let total = { x: 0, y: 0 };
     for (const touch of touches) {
@@ -65,11 +77,11 @@ class MapRender {
   }
 
   reverseMatrixTransform(x, y) {
-    const matrix = this.ctx.getTransform().inverse();
+    const { a, b, c, d, e, f } = this.ctx.getTransform().inverse();
 
     return {
-      x: matrix.a * x + matrix.c * y + matrix.e,
-      y: matrix.b * x + matrix.d * y + matrix.f,
+      x: a * x + c * y + e,
+      y: b * x + d * y + f,
     }
   }
 }
@@ -90,15 +102,34 @@ class Map {
     this.render.bake();
   }
 
-  getNodeMetadata(node) {
-    if (node.starsWith('node')) {
-      return this.metadata[node];
-    } else {
-      Object.keys(this.nodes).forEach(key => {
-        if (this.metadata[key].name == node) return this.metadata[key];
-      })
+  focusOnNode(node) {
+    const { x, y } = this.render.translationToPoint(0, 0);
+
+    let t = 0;
+    while (t < 100) {
+      t++;
+      setTimeout(() => {
+        this.render.ctx.translate(x / 100, y / 100);
+        this.render.bake();
+      }, 10 * t);
     }
   }
+
+  getNodeMetadata(node) {
+    if (node.startsWith('node')) {
+      return this.metadata[node];
+    } else {
+      return Object.values(this.metadata).find(metadata => metadata.name == node);
+    }
+  }
+}
+
+function easeInOutQubic(x) {
+  return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+}
+
+function reciprocal(x) {
+  return 1 / x;
 }
 
 // --------------------

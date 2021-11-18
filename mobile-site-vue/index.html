@@ -19,14 +19,16 @@
             <input v-bind:class="{ 'hide-back': !isMenuOpen }" v-on:focus="openMenu" v-model="inputValue"
                 class="search-bar-input" placeholder="Search here">
         </div>
-        <div v-if="isMenuOpen" class="search-results">
-            <div v-for="result in results">
-                <div v-bind:class="{ 'not-recent': !result.recent }" class="search-result">
-                    <i class="bi bi-clock-history search-result-icon"></i>
-                    <div class="search-result-text">{{ result.text }}</div>
+        <transition name="show-menu">
+            <div v-if="isMenuOpen" class="search-results">
+                <div v-for="result in results">
+                    <div v-bind:class="{ 'not-recent': !result.recent }" class="search-result">
+                        <i class="bi bi-clock-history search-result-icon"></i>
+                        <div class="search-result-text">{{ result.text }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </transition>
     </div>
 
     <script src="map.js"></script>
