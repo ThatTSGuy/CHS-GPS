@@ -19,30 +19,25 @@ const search = new Vue({
     data: {
         isMenuOpen: false,
         inputValue: '',
-        results: [
-            { text: 'A101', recent: false },
-            { text: 'A102', recent: false },
-            { text: 'A105', recent: false },
-            { text: 'A101', recent: false },
-            { text: 'A102', recent: false },
-            { text: 'A105', recent: false },
-            { text: 'A101', recent: false },
-            { text: 'A102', recent: false },
-            { text: 'A105', recent: false },
-            { text: 'A101', recent: false },
-            { text: 'A102', recent: false },
-            { text: 'A105', recent: false },
-            { text: 'Bathroom', recent: true },
-            { text: 'Main Office', recent: true },
-        ],
-        recents: [],
+        searchResults: [],
     },
     methods: {
+        search: function() {
+            const value = document.querySelector('.search-bar-input').value.trim().toLowerCase();
+            const results = nodeList.filter(node => node.toLowerCase().startsWith(value));
+            this.searchResults = results.map(result => ({ text: result, recent: false }));
+        },
+        clickedResult: function(node) {
+            document.querySelector('.search-bar-input').value = node.text;
+            this.closeMenu();
+        },
         openMenu: function () {
             this.isMenuOpen = true;
+            document.querySelector('.search-bar-input').value = '';
         },
         closeMenu: function () {
             this.isMenuOpen = false;
+            this.searchResults = [];
         },
     },
 })

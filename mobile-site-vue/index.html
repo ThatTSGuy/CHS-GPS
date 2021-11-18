@@ -16,13 +16,12 @@
     <div v-bind:class="{ 'show-menu': isMenuOpen }" class="search">
         <div class="search-bar">
             <i v-on:click="closeMenu" class="bi bi-arrow-left search-back"></i>
-            <input v-bind:class="{ 'hide-back': !isMenuOpen }" v-on:focus="openMenu" v-model="inputValue"
-                class="search-bar-input" placeholder="Search here">
+            <input v-bind:class="{ 'hide-back': !isMenuOpen }" v-on:focus="openMenu" v-on:input="search" class="search-bar-input" placeholder="Search here">
         </div>
         <transition name="show-menu">
             <div v-if="isMenuOpen" class="search-results">
-                <div v-for="result in results">
-                    <div v-bind:class="{ 'not-recent': !result.recent }" class="search-result">
+                <div v-for="result in searchResults">
+                    <div v-bind:class="{ 'not-recent': !result.recent }" v-bind:click="clickedResult(result)" class="search-result">
                         <i class="bi bi-clock-history search-result-icon"></i>
                         <div class="search-result-text">{{ result.text }}</div>
                     </div>
